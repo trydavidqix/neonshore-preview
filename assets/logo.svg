@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" role="img" aria-label="Neonshore logo">
+  <defs><linearGradient id="ns-s" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd36b"/><stop offset=".5" stop-color="#ff7a59"/><stop offset="1" stop-color="#ff4fa3"/></linearGradient></defs>
+  <rect width="48" height="48" rx="12" fill="#1d1230"/>
+  <circle cx="24" cy="22" r="13" fill="url(#ns-s)"/>
+  <g fill="#1d1230"><rect x="9" y="23" width="30" height="2"/><rect x="9" y="27" width="30" height="2.4"/><rect x="9" y="31.5" width="30" height="2.8"/></g>
+  <rect x="6" y="37" width="36" height="3" rx="1.5" fill="#3fe0d0"/>
+  <path d="M31 37c.3-6 .8-11 .4-16h1.4c.5 5 .1 10-.2 16z" fill="#1d1230"/>
+  <path d="M32.4 21c-3-3-6.5-3.4-9-1.6 3-3.4 6.8-2.6 9.4.6zm.2 0c1.6-3.8 5-5.4 8-4.4-3.6-.4-6.4 1.6-7.6 4.8zm-.2.4c-2.2.4-4 2.4-4.6 4.6 1.2-2.4 2.8-3.6 4.8-4z" fill="#1d1230"/>
+</svg>
