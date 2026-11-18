@@ -127,7 +127,7 @@ let timer;
 function tick(){
   let t = Math.floor((LAUNCH - Date.now()) / 1000);
   if (t <= 0) {
-    document.getElementById('count-title').textContent = 'GTA VI is out now';
+    document.getElementById('count-title').textContent = 'Out now';
     document.getElementById('countdown').hidden = true;
     document.getElementById('count-out').hidden = false;
     clearInterval(timer); return;

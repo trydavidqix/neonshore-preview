@@ -23,7 +23,8 @@ jobs:
           if [ -d .github/binaries ]; then
             cat .github/binaries/assets.tar.b64.* | base64 -d | tar -xvf -
           fi
-          test -f assets/img/featured.webp
+          test -f assets/js/hero3d.js
+          test -f assets/vendor/three.module.min.js
           test -f shop/img/sunset-job-banner.webp
       - name: Prepare site
         run: |
@@ -31,11 +32,15 @@ jobs:
           mkdir -p _site
           rsync -a --exclude '.git' --exclude '.github' --exclude '_site' ./ _site/
           test -f _site/index.html
-          test -f _site/assets/img/featured.webp
+          test -f _site/assets/js/hero3d.js
+          test -f _site/assets/vendor/three.module.min.js
           test -f _site/.nojekyll
           test -f _site/shop/index.html
           test -f _site/shop/sunset-job/index.html
           test -f _site/shop/img/sunset-job-banner.webp
+          test ! -d _site/screenshots
+          test ! -d _site/_phase0
+          test ! -d _site/tests
       - name: Commit decoded binaries to the repo
         continue-on-error: true
         run: |
@@ -44,8 +49,12 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           if [ -d .github/binaries ]; then
             rm -rf .github/binaries
+            git add -A .github/binaries
           fi
-          git add -A assets/img screenshots .github/binaries
+          git add -A assets/img
+          if [ -d screenshots ]; then
+            git add -A screenshots
+          fi
           if [ -d shop/img ]; then
             git add -A shop/img
           fi

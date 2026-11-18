@@ -10,14 +10,19 @@
   <meta property="og:description" content="Sunset Job is an original stream overlay pack by Neonshore: 10 matching pieces for OBS and Streamlabs, with countdown scenes, alerts, facecam frame, chat widget and panels. Coming soon.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../../assets/fonts/Unbounded-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../../styles.css">
   <link rel="stylesheet" href="../../shop/shop.css">
+  <link rel="stylesheet" href="../../assets/css/fx.css">
+  <script>(function(){var d=document.documentElement,m=window.matchMedia,gl=false;try{var c=document.createElement('canvas');gl=!!(window.WebGLRenderingContext&&(c.getContext('webgl2')||c.getContext('webgl')));}catch(e){}d.classList.add('js');if(m&&m('(prefers-reduced-motion: reduce)').matches)d.classList.add('reduced-motion');if(!gl)d.classList.add('no-webgl');})();</script>
 </head>
-<body>
+<body class="x3-page" data-hero3d="product" data-hero3d-panels="../img/sunset-job-01-starting-soon-5min-640.webp,../img/sunset-job-03-be-right-back-640.webp,../img/sunset-job-05-ending-640.webp,../img/sunset-job-06-facecam-640.webp,../img/sunset-job-07-alerts-live-widget-640.webp,../img/sunset-job-09-mission-complete-640.webp">
 <a class="skip" href="#main">Skip to content</a>
+<div class="x3-stage" aria-hidden="true">
+  <canvas id="x3-scene"></canvas>
+  <div class="x3-fallback"><div class="x3-fb-sun"></div><div class="x3-fb-sea"></div></div>
+  <div class="x3-grain"></div>
+</div>
 <header class="hdr" id="top">
   <div class="hdr__in">
     <a class="brand" href="../../index.html" aria-label="Neonshore home">
@@ -42,11 +47,26 @@
 </header>
 
 <main id="main">
+  <section class="x3-hero x3-hero--product" id="hero" aria-labelledby="hero-title">
+    <div class="x3-hero__pin">
+      <p class="x3-chip" data-depth="2"><i></i>Coming soon · Stream overlay pack</p>
+      <h1 class="x3-wordmark" id="hero-title" data-depth="1" aria-label="Sunset Job: Stream Overlay Pack"><span class="x3-wordmark__a" aria-hidden="true">Sunset</span><span class="x3-wordmark__b" aria-hidden="true">Job</span></h1>
+      <p class="x3-hero__lede" data-depth="3">Ten matching scenes and overlays for OBS and Streamlabs: countdowns, BRB, alerts, facecam, chat and a full-screen payoff moment.</p>
+      <p class="x3-price" data-x3-reveal><span class="x3-price__now">$<span class="x3-count" data-from="39" data-to="24">24</span></span><s><span class="sr-only">Regular price </span>$39</s><span class="x3-price__off">-38% launch</span><span>USD, one-time</span></p>
+      <div class="x3-hero__cta" data-depth="4">
+        <a class="x3-btn x3-btn--sun" href="#buy">Price &amp; availability</a>
+        <a class="x3-btn x3-btn--ghost" href="#inside">What’s inside</a>
+      </div>
+      <a class="x3-cue" href="#buy" aria-label="Scroll to price and availability"><span></span></a>
+    </div>
+  </section>
+
+  <div class="x3-first" id="buy">
   <div class="wrap">
     <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../../index.html">Neonshore</a></li><li><a href="../index.html">Shop</a></li><li aria-current="page">Sunset Job</li></ol></nav>
   </div>
 
-  <section class="wrap prod" aria-labelledby="prod-title">
+  <section class="wrap prod" aria-labelledby="prod-title" data-x3-stagger>
     <div class="gallery">
       <figure class="gallery__main">
         <img id="gallery-img" src="../img/sunset-job-01-starting-soon-5min.webp" width="1600" height="900" alt="Starting Soon scene with a 05:00 countdown, chrome title, striped sun and neon grid sea">
@@ -70,7 +90,7 @@
 
     <aside class="card buybox" aria-label="Price and availability">
       <div class="tags"><span class="tag tag--soon">Coming soon</span><span class="tag">Digital download</span></div>
-      <h1 id="prod-title" style="margin-top:12px">Sunset Job — Stream Overlay Pack</h1>
+      <h2 id="prod-title" class="prod__title" style="margin-top:12px">Sunset Job — Stream Overlay Pack</h2>
       <p class="muted lede">A late-night coastal crime broadcast for your stream: a striped setting sun, a teal neon grid sea, palm silhouettes and chrome type. GTA 6-inspired in mood only; every piece is original Neonshore artwork.</p>
       <p class="price"><span class="price__now">$24</span><s class="price__was"><span class="sr-only">Regular price </span>$39</s><span class="price__off">-38% launch</span><span class="price__once">USD, one-time</span></p>
       <!--
@@ -78,7 +98,8 @@
         Only when the user explicitly says "launch", replace the <button> element below with:
           <a class="btn btn--pink buy" href="https://whop.com/checkout/plan_tcxdwXYYkaxUN" rel="noopener">Buy now — $24</a>
         Then also: remove the "Coming soon" tags (here and in shop/index.html), update the note under the button
-        and the note in shop/index.html. No JavaScript change is needed (shop.js has no purchase logic).
+        and the note in shop/index.html, and change the "Coming soon" chip in the 3D hero above.
+        No JavaScript change is needed (shop.js and scrollfx.js have no purchase logic).
       -->
       <button class="btn buy" type="button" disabled aria-disabled="true">Coming soon</button>
       <p class="buy__note">Not on sale yet. Checkout will open through Whop at launch.</p>
@@ -91,11 +112,15 @@
       <p class="affil">Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Original artwork by Neonshore.</p>
     </aside>
   </section>
+  </div><!-- /x3-first -->
+
+  <div class="x3-solid">
 
   <section class="wrap psec" id="inside" aria-labelledby="inside-title">
-    <h2 id="inside-title">What’s inside</h2>
+    <div data-x3-reveal><p class="x3-kick"><b class="x3-count" data-to="13">13</b> WebM · <b class="x3-count" data-to="23">23</b> PNG · <b class="x3-count" data-to="3">3</b> widgets</p>
+    <h2 id="inside-title">What’s inside</h2></div>
     <p class="muted" style="margin-bottom:20px;max-width:720px">The pack has 13 WebM videos, 23 PNG files (15 full-size pieces plus 8 panels) and 3 live widgets (HTML files with bundled open-source fonts and a <code>config.js</code> for your name, colors and alert text). Previews below are taken from the pack.</p>
-    <ul class="pieces">
+    <ul class="pieces" data-x3-stagger>
       <li class="card piece"><img src="../img/sunset-job-01-starting-soon-5min-640.webp" width="640" height="360" alt="Sunset Job Starting Soon, 5 min" loading="lazy"><div><h3><span class="num">01</span>Starting Soon, 5 min</h3><p>Opaque 1920×1080 scene with a real 05:00 → 00:00 countdown that starts when you switch to it.</p></div></li>
       <li class="card piece"><img src="../img/sunset-job-02-starting-soon-10min-640.webp" width="640" height="360" alt="Sunset Job Starting Soon, 10 min" loading="lazy"><div><h3><span class="num">02</span>Starting Soon, 10 min</h3><p>Same scene with a real 10:00 → 00:00 countdown.</p></div></li>
       <li class="card piece"><img src="../img/sunset-job-03-be-right-back-640.webp" width="640" height="360" alt="Sunset Job Be Right Back" loading="lazy"><div><h3><span class="num">03</span>Be Right Back</h3><p>12-second seamless loop.</p></div></li>
@@ -108,7 +133,7 @@
       <li class="card piece"><img src="../img/sunset-job-10-static-set-640.webp" width="640" height="360" alt="Sunset Job Static set" loading="lazy"><div><h3><span class="num">10</span>Static set</h3><p>Eight 320×160 stream panels, an offline screen and a 1200×480 channel banner.</p></div></li>
     </ul>
     <h3 style="margin-top:28px;font-size:1.05rem">The eight stream panels</h3>
-    <ul class="panels">
+    <ul class="panels" data-x3-stagger>
 <li><img src="../img/sunset-job-panel-01-about-me.webp" width="320" height="160" alt="About Me panel" loading="lazy"></li>
 <li><img src="../img/sunset-job-panel-02-schedule.webp" width="320" height="160" alt="Schedule panel" loading="lazy"></li>
 <li><img src="../img/sunset-job-panel-03-rules.webp" width="320" height="160" alt="Rules panel" loading="lazy"></li>
@@ -122,7 +147,7 @@
 
   <section class="wrap psec" aria-labelledby="specs-title">
     <h2 id="specs-title">Specs</h2>
-    <table class="specs">
+    <table class="specs" data-x3-reveal>
       <tbody>
         <tr><th scope="row">Video</th><td>VP9 WebM, 1920×1080, 30 fps. Overlays (facecam, alerts, chat demo, mission complete) carry transparency.</td></tr>
         <tr><th scope="row">Loops</th><td>BRB, intermission and ending: 12 s seamless. Facecam: 6 s. Alerts and mission complete: 6 s.</td></tr>
@@ -138,14 +163,14 @@
 
   <section class="wrap psec" aria-labelledby="sheet-title">
     <h2 id="sheet-title">All 10 pieces at a glance</h2>
-    <figure class="contact-sheet">
-      <img src="../img/sunset-job-contact-sheet.webp" width="1600" height="874" alt="Contact sheet of all ten Sunset Job pieces: starting soon 5 and 10 minutes, be right back, intermission, ending, facecam, alerts, chat, mission complete and the static set" loading="lazy">
+    <figure class="contact-sheet x3-parwrap" data-x3-reveal>
+      <img data-x3-par="0.04" src="../img/sunset-job-contact-sheet.webp" width="1600" height="874" alt="Contact sheet of all ten Sunset Job pieces: starting soon 5 and 10 minutes, be right back, intermission, ending, facecam, alerts, chat, mission complete and the static set" loading="lazy">
       <figcaption>Original artwork by Neonshore.</figcaption>
     </figure>
   </section>
 
   <section class="wrap psec faq" id="faq" aria-labelledby="faq-title">
-    <h2 id="faq-title">FAQ</h2>
+    <h2 id="faq-title" data-x3-reveal>FAQ</h2>
     <details><summary>Can I buy it now?</summary><div><p>Not yet. Sunset Job is coming soon, and the buy button is switched off until launch. The planned launch price is $24 one-time (regular price $39).</p></div></details>
     <details><summary>How can I use it?</summary><div><p>Summary of the pack’s license (the full terms ship as LICENSE.md in the download):</p><ul><li>Use it on your own streams, videos, VODs, clips, thumbnails and social posts, including monetized channels.</li><li>Edit it for your own channel: names, colors, labels, crops and timing.</li><li>No reselling, sharing, giving away or redistributing the files, edited or not.</li><li>Don’t use it to suggest you’re endorsed by a game publisher or brand, and don’t use the files to train AI models.</li></ul></div></details>
     <details><summary>How is it delivered?</summary><div><p>As a ZIP download through Whop at purchase, plus links to the live widgets.</p></div></details>
@@ -155,6 +180,7 @@
     <details><summary>Does it include any game assets?</summary><div><p>No. All artwork, animation and code are original Neonshore work. There are no game screenshots, logos or franchise fonts. Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Original artwork by Neonshore.</p></div></details>
     <details><summary>Will it work with my setup?</summary><div><p>The scenes and overlays are standard WebM and PNG files for OBS Studio and Streamlabs Desktop. The live widgets work as a Browser Source. Chat and automatic alerts read Twitch; on other platforms use the WebM and PNG files.</p></div></details>
   </section>
+  </div><!-- /x3-solid -->
 </main>
 <footer class="ftr">
   <div class="wrap ftr__top">
@@ -164,10 +190,11 @@
     <nav aria-label="Footer"><a href="../../index.html">Community</a><a href="../../shop/index.html">Shop</a><a href="../../shop/sunset-job/index.html">Sunset Job</a><a href="../../index.html#about">About</a><a href="../../sources.html">Sources</a><a href="../../index.html#privacy">Privacy</a></nav>
     <div>
       <p class="disclaimer shop-disclaimer"><b>Shop:</b> Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Original artwork by Neonshore.</p>
-      <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and related marks are trademarks of their respective owners. GTA VI imagery © Rockstar Games, used for fan commentary. The community map is credited separately. Neonshore’s logo and editorial text are original.</p>
+      <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. All trademarks belong to their respective owners. Everything in the shop is original Neonshore artwork, made without game screenshots, logos or fonts.</p>
     </div>
   </div>
 </footer>
 <script src="../../shop/shop.js" defer></script>
+<script type="module" src="../../assets/js/scrollfx.js"></script>
 </body>
 </html>

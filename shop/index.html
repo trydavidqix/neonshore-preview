@@ -10,14 +10,19 @@
   <meta property="og:description" content="Original stream overlay packs made by Neonshore. Static previews; the first pack, Sunset Job, is coming soon.">
   <meta property="og:type" content="website">
   <link rel="icon" href="../favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preload" href="../assets/fonts/Unbounded-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="../styles.css">
   <link rel="stylesheet" href="../shop/shop.css">
+  <link rel="stylesheet" href="../assets/css/fx.css">
+  <script>(function(){var d=document.documentElement,m=window.matchMedia,gl=false;try{var c=document.createElement('canvas');gl=!!(window.WebGLRenderingContext&&(c.getContext('webgl2')||c.getContext('webgl')));}catch(e){}d.classList.add('js');if(m&&m('(prefers-reduced-motion: reduce)').matches)d.classList.add('reduced-motion');if(!gl)d.classList.add('no-webgl');})();</script>
 </head>
-<body>
+<body class="x3-page" data-hero3d="shop" data-hero3d-panels="img/sunset-job-03-be-right-back-640.webp,img/sunset-job-01-starting-soon-5min-640.webp,img/sunset-job-06-facecam-640.webp">
 <a class="skip" href="#main">Skip to content</a>
+<div class="x3-stage" aria-hidden="true">
+  <canvas id="x3-scene"></canvas>
+  <div class="x3-fallback"><div class="x3-fb-sun"></div><div class="x3-fb-sea"></div></div>
+  <div class="x3-grain"></div>
+</div>
 <header class="hdr" id="top">
   <div class="hdr__in">
     <a class="brand" href="../index.html" aria-label="Neonshore home">
@@ -41,17 +46,28 @@
   </div>
 </header>
 
-<main id="main" class="wrap">
-  <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Neonshore</a></li><li aria-current="page">Shop</li></ol></nav>
-  <section class="shop-hero" aria-labelledby="shop-title">
-    <p class="eyebrow">Neonshore Shop</p>
-    <h1 id="shop-title">Original packs for <span>streamers</span></h1>
-    <p class="muted">Stream overlays and scenes designed and built by Neonshore. Every pixel is our own artwork: no game screenshots, logos or fonts. The community hub stays free; the shop is how we fund it.</p>
+<main id="main">
+  <section class="x3-hero x3-hero--shop" id="hero" aria-labelledby="shop-title">
+    <div class="x3-hero__pin">
+      <p class="x3-chip" data-depth="2"><i></i>Neonshore Shop · original packs</p>
+      <h1 class="x3-wordmark" id="shop-title" data-depth="1" aria-label="Original packs for streamers"><span class="x3-wordmark__a" aria-hidden="true">Original</span><span class="x3-wordmark__b" aria-hidden="true">overlays</span></h1>
+      <p class="x3-hero__lede" data-depth="3">Stream scenes and overlays designed and built by Neonshore. Every pixel is our own artwork: no game screenshots, logos or fonts. The community hub stays free; the shop is how we fund it.</p>
+      <div class="x3-hero__cta" data-depth="4">
+        <a class="x3-btn x3-btn--sun" href="#products">See the packs</a>
+        <a class="x3-btn x3-btn--ghost" href="sunset-job/index.html">Sunset Job details</a>
+      </div>
+      <a class="x3-cue" href="#products" aria-label="Scroll to the packs"><span></span></a>
+    </div>
   </section>
 
-  <section aria-labelledby="products-title">
-    <h2 id="products-title" class="sr-only">Products</h2>
-    <ul class="pgrid">
+  <section class="x3-first" id="products" aria-labelledby="products-title">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="../index.html">Neonshore</a></li><li aria-current="page">Shop</li></ol></nav>
+      <header data-x3-reveal>
+        <p class="x3-eyebrow">01 · The packs</p>
+        <h2 id="products-title" class="x3-h2">One pack so far, <span class="x3-nw">built to last.</span></h2>
+      </header>
+    <ul class="pgrid" data-x3-stagger>
       <li>
         <a class="card pcard" href="sunset-job/index.html">
           <img class="pcard__img" src="img/sunset-job-01-starting-soon-5min-640.webp" srcset="img/sunset-job-01-starting-soon-5min-640.webp 640w, img/sunset-job-01-starting-soon-5min.webp 1600w" sizes="(max-width:700px) 100vw, 400px" width="640" height="360" alt="Sunset Job Starting Soon scene: chrome title over a striped setting sun, neon grid sea and palm silhouettes, with a 05:00 countdown">
@@ -66,7 +82,25 @@
       </li>
     </ul>
     <p class="note">Sunset Job isn’t on sale yet. The price shown is the planned launch price. When it launches, checkout will be handled by Whop; Neonshore stores no payment details.</p>
+      <dl class="x3-stats x3-shop-stats" data-x3-reveal aria-label="Sunset Job in numbers">
+        <div><dt>Matching pieces</dt><dd><span class="x3-count" data-to="10">10</span></dd></div>
+        <div><dt>Animated WebM files</dt><dd><span class="x3-count" data-to="13">13</span></dd></div>
+        <div><dt>Live browser widgets</dt><dd><span class="x3-count" data-to="3">3</span></dd></div>
+        <div><dt>Launch price, USD</dt><dd>$<span class="x3-count" data-from="39" data-to="24">24</span></dd></div>
+      </dl>
+    </div>
   </section>
+
+  <div class="x3-solid">
+    <section class="sec wrap" aria-labelledby="how-title">
+      <div class="sec__head" data-x3-reveal><div><p class="x3-kick">02 · How the shop works</p><h2 id="how-title">Simple, and on the record</h2></div></div>
+      <ul class="x3-how" data-x3-stagger>
+        <li class="x3-glass"><h3>Original art only</h3><p>Drawn, animated and coded by Neonshore. No game footage, logos or franchise fonts in any pack.</p></li>
+        <li class="x3-glass"><h3>Checkout through Whop</h3><p>At launch, payment and the ZIP download run through Whop. Neonshore never sees or stores card details.</p></li>
+        <li class="x3-glass"><h3>Support where you bought</h3><p>Questions after purchase go through your Whop purchase dashboard. Digital product: no refunds once downloaded or accessed.</p></li>
+      </ul>
+    </section>
+  </div>
 </main>
 <footer class="ftr">
   <div class="wrap ftr__top">
@@ -76,10 +110,11 @@
     <nav aria-label="Footer"><a href="../index.html">Community</a><a href="../shop/index.html">Shop</a><a href="../shop/sunset-job/index.html">Sunset Job</a><a href="../index.html#about">About</a><a href="../sources.html">Sources</a><a href="../index.html#privacy">Privacy</a></nav>
     <div>
       <p class="disclaimer shop-disclaimer"><b>Shop:</b> Not affiliated with, endorsed by, or sponsored by Rockstar Games or Take-Two Interactive. Original artwork by Neonshore.</p>
-      <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and related marks are trademarks of their respective owners. GTA VI imagery © Rockstar Games, used for fan commentary. The community map is credited separately. Neonshore’s logo and editorial text are original.</p>
+      <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. All trademarks belong to their respective owners. Everything in the shop is original Neonshore artwork, made without game screenshots, logos or fonts.</p>
     </div>
   </div>
 </footer>
 <script src="../shop/shop.js" defer></script>
+<script type="module" src="../assets/js/scrollfx.js"></script>
 </body>
 </html>

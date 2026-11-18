@@ -3,16 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Neonshore: the unofficial GTA VI fan hub</title>
-  <meta name="description" content="Neonshore is an unofficial, fan-made GTA VI hub: an illustrated atlas of Leonida, sourced news, trailers and hidden details, and a community built by players.">
+  <title>Neonshore · Unofficial fan field guide to Leonida</title>
+  <meta name="description" content="Neonshore is an unofficial, fan-made field guide to Leonida: a community atlas, sourced news, every official trailer in one place, and an original overlay shop.">
   <meta name="theme-color" content="#140c22">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/Unbounded-VariableFont_wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="assets/css/fx.css">
+  <meta name="theme-color" content="#120a24">
+  <!-- Tier detection before paint (static fallback when WebGL is missing; lighter path for reduced motion). -->
+  <script>(function(){var d=document.documentElement,m=window.matchMedia,gl=false;try{var c=document.createElement('canvas');gl=!!(window.WebGLRenderingContext&&(c.getContext('webgl2')||c.getContext('webgl')));}catch(e){}d.classList.add('js');if(m&&m('(prefers-reduced-motion: reduce)').matches)d.classList.add('reduced-motion');if(!gl)d.classList.add('no-webgl');})();</script>
 </head>
-<body>
+<body class="x3-page" data-hero3d="community">
 <a class="skip" href="#main">Skip to content</a>
 
 <header class="hdr" id="top">
@@ -28,13 +30,14 @@
         <li class="dd">
           <button class="nav__btn" aria-expanded="false" aria-controls="dd-explore"><span class="ico ico--compass" aria-hidden="true"></span>Explore<span class="chev" aria-hidden="true"></span></button>
           <ul class="dd__menu" id="dd-explore">
+            <li><a href="#neonshore">What is Neonshore</a></li>
             <li><a href="#regions">Regions</a></li>
             <li><a href="#atlas">Community atlas</a></li>
             <li><a href="#files">Official pages</a></li>
             <li><a href="#about">About Neonshore</a></li>
           </ul>
         </li>
-        <li><a class="nav__link" href="#atlas"><span class="ico ico--map" aria-hidden="true"></span>Map</a></li>
+        <li><a class="nav__link" href="#atlas-sec"><span class="ico ico--map" aria-hidden="true"></span>Map</a></li>
         <li class="dd">
           <button class="nav__btn" aria-expanded="false" aria-controls="dd-latest"><span class="ico ico--news" aria-hidden="true"></span>Latest<span class="chev" aria-hidden="true"></span></button>
           <ul class="dd__menu" id="dd-latest">
@@ -57,27 +60,75 @@
 </header>
 
 <main id="main">
-  <!-- HERO -->
-  <section class="hero wrap" aria-labelledby="hero-title">
-    <div class="hero__left">
-      <div class="wordmark" aria-hidden="true">
-        <svg viewBox="0 0 520 150" class="wordmark__svg">
-          <defs>
-            <linearGradient id="wm" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ff8cc6"/><stop offset="1" stop-color="#ff3f97"/></linearGradient>
-            <linearGradient id="wmsun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffd36b"/><stop offset="1" stop-color="#ff7a59"/></linearGradient>
-          </defs>
-          <circle cx="452" cy="50" r="36" fill="url(#wmsun)" opacity=".9"/>
-          <g fill="#140c22"><rect x="414" y="54" width="80" height="4"/><rect x="414" y="64" width="80" height="5"/><rect x="414" y="75" width="80" height="6"/></g>
-          <text x="6" y="104" font-family="Pacifico, cursive" font-size="104" fill="#7a1747" textLength="372" lengthAdjust="spacingAndGlyphs">Neonshore</text>
-          <text x="0" y="98" font-family="Pacifico, cursive" font-size="104" fill="url(#wm)" stroke="#ffe1ef" stroke-width="1.5" textLength="372" lengthAdjust="spacingAndGlyphs">Neonshore</text>
-        </svg>
+  <!-- ===== PHASE 1 (for approval): 3D hero + "What is Neonshore". Shared modules: assets/js/hero3d.js, assets/js/scrollfx.js, assets/css/fx.css ===== -->
+  <div class="x3-stage" aria-hidden="true">
+    <canvas id="x3-scene"></canvas>
+    <div class="x3-fallback"><div class="x3-fb-sun"></div><div class="x3-fb-city"></div><div class="x3-fb-sea"></div></div>
+    <div class="x3-grain"></div>
+  </div>
+
+  <section class="x3-hero" id="hero" aria-labelledby="hero-title">
+    <div class="x3-hero__pin">
+      <p class="x3-chip" data-depth="2"><i></i>Unofficial fan field guide · Leonida</p>
+      <h1 class="x3-wordmark" id="hero-title" data-depth="1" aria-label="Neonshore"><span class="x3-wordmark__a" aria-hidden="true">Neon</span><span class="x3-wordmark__b" aria-hidden="true">shore</span></h1>
+      <p class="x3-hero__lede" data-depth="3">Every street of Leonida, mapped by the people who play it. A community atlas, sourced news and every official trailer, from golden hour to neon night.</p>
+      <div class="x3-hero__cta" data-depth="4">
+        <a class="x3-btn x3-btn--sun" href="#neonshore">What is Neonshore</a>
+        <a class="x3-btn x3-btn--ghost" href="#atlas-sec">Open the atlas</a>
       </div>
-      <p class="wordmark__sub" aria-hidden="true">Field Guide <span class="chip-ico">▤</span></p>
+      <div class="x3-hud" aria-hidden="true">
+        <span>Sky</span><b id="x3-sky">Golden hour</b>
+        <span>Local</span><b id="x3-time">--:--</b>
+      </div>
+      <a class="x3-cue" href="#neonshore" aria-label="Scroll to What is Neonshore"><span></span></a>
+    </div>
+  </section>
 
-      <h1 id="hero-title" class="hero__title">Every street of Leonida.<br><span>Mapped by the people who play it.</span></h1>
-      <p class="hero__intro">A community atlas from the city lights down to the island chain, with official news that links its sources and every trailer in one place.</p>
-      <p class="hero__line">Made by fans. Open to everyone.</p>
+  <section class="x3-about" id="neonshore" aria-labelledby="neonshore-title">
+    <div class="x3-about__in">
+      <header class="x3-reveal">
+        <p class="x3-eyebrow">01 · What is Neonshore</p>
+        <h2 id="neonshore-title">A <span class="x3-nw">fan-made</span> shore<br>for the long wait.</h2>
+        <p class="x3-about__lede">Neonshore is an unofficial, English-speaking fan hub for Rockstar’s return to Leonida. We keep a community atlas of the coast, link every news item to its official source, collect the trailers in one place, and draw original stream art for the players who broadcast it.</p>
+      </header>
+      <div class="x3-pillars">
+        <a class="x3-pillar x3-reveal" style="--d:0" href="#atlas-sec">
+          <span class="x3-pillar__ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M4 8l8-3 8 3 8-3v19l-8 3-8-3-8 3z"/><path d="M12 5v19M20 8v19"/></svg></span>
+          <h3>Community atlas</h3>
+          <p>Six regions on an open, credited community map. Tap a pin, jump to the region.</p>
+          <span class="x3-pillar__go">Open the atlas →</span>
+        </a>
+        <a class="x3-pillar x3-reveal" style="--d:1" href="#record">
+          <span class="x3-pillar__ico" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="6" width="22" height="20" rx="3"/><path d="M10 12h12M10 17h12M10 22h7"/></svg></span>
+          <h3>Sourced news &amp; trailers</h3>
+          <p>Only confirmed news, each linked to Rockstar Newswire. Trailers load only when you press play.</p>
+          <span class="x3-pillar__go">Read the record →</span>
+        </a>
+        <a class="x3-pillar x3-reveal" style="--d:2" href="shop/index.html">
+          <span class="x3-pillar__ico" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M6 11h20l-2 15H8z"/><path d="M11 11a5 5 0 0110 0"/></svg></span>
+          <h3>Original overlay shop</h3>
+          <p>Stream packs drawn from scratch by Neonshore. First up: Sunset Job, coming soon.</p>
+          <span class="x3-pillar__go">Visit the shop →</span>
+        </a>
+      </div>
+      <dl class="x3-stats x3-reveal" aria-label="Neonshore in numbers">
+        <div><dt>Regions in the guide</dt><dd><span class="x3-count" data-to="6">6</span></dd></div>
+        <div><dt>Official trailers linked</dt><dd><span class="x3-count" data-to="4">4</span></dd></div>
+        <div><dt>Open community map · CC BY 4.0</dt><dd><span class="x3-count" data-to="1">1</span></dd></div>
+        <div><dt id="x3-launch-k">Hours to US launch</dt><dd><span class="x3-count" id="x3-launch" data-launch="2026-11-19T05:00:00Z">–</span></dd></div>
+      </dl>
+    </div>
+  </section>
+  <!-- ===== END PHASE 1 ===== -->
 
+  <!-- Below the 3D block: same shared FX (reveal/stagger, in-card parallax, pinned news column, counters) on a dusk-to-midnight background.
+       All imagery is original SVG illustration (assets/art/). -->
+  <div class="x3-solid">
+  <!-- ATLAS (moved from the old hero) — the CC BY 4.0 map credit must stay visible next to the map. -->
+  <section class="sec wrap x3-atlas" id="atlas-sec" aria-labelledby="atlas-sec-title">
+    <div class="sec__head" data-x3-reveal><div><p class="x3-kick"><b class="x3-count" data-to="6">6</b> pins · <b class="x3-count" data-to="1">1</b> open map</p><h2 id="atlas-sec-title">Community atlas</h2></div><p class="sec__aside">Search the page or tap a pin.</p></div>
+    <div class="x3-atlas__grid" data-x3-stagger>
+      <div>
       <div class="search" role="search">
         <label for="q" class="sr-only">Search this page</label>
         <span class="search__ico" aria-hidden="true"></span>
@@ -86,23 +137,22 @@
         <ul class="search__results" id="q-results" role="listbox" hidden></ul>
       </div>
       <p class="search__msg fine" id="q-msg" aria-live="polite"></p>
+      <div style="height:24px"></div>
+      <section class="count card" id="countdown-card" aria-labelledby="count-title">
+        <div class="count__head"><h2 id="count-title">US launch in</h2><span class="count__date" id="count-date">19 Nov 2026 · 00:00 ET</span></div>
+        <p class="count__out" id="count-out" hidden>Out now. Unlocked at 00:00 ET on 19 Nov 2026 in the US.</p>
+        <div class="count__grid" id="countdown" role="timer" aria-live="off">
+          <div><b data-u="d">00</b><span>days</span></div>
+          <div><b data-u="h">00</b><span>hours</span></div>
+          <div><b data-u="m">00</b><span>mins</span></div>
+          <div><b data-u="s">00</b><span>secs</span></div>
+        </div>
+        <p class="count__note">US launch in your time: <b id="count-local">—</b></p>
+        <p class="count__fine">Counting to 00:00 ET on 19 Nov 2026, the US release (Rockstar: midnight local time). Other regions unlock at their own midnight.</p>
+      </section>
 
-      <div class="hero__ctas">
-        <a class="btn btn--pink" href="#regions">Explore the regions <span aria-hidden="true">→</span></a>
-        <a class="link" href="#atlas">See the atlas</a>
-        <a class="link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener">Official GTA VI site <span aria-hidden="true">↗</span></a>
       </div>
-
-      <ul class="hero__stats" aria-label="What is on this page">
-        <li><b>6</b> regions</li>
-        <li><b>15</b> official images</li>
-        <li><b>4</b> official trailers</li>
-      </ul>
-      <p class="hero__note">Official facts link to Rockstar Games. The map is a credited community reconstruction.</p>
-      <a class="discover" href="#regions">Scroll to explore <span aria-hidden="true">↓</span></a>
-    </div>
-
-    <div class="hero__right">
+      <div>
       <div class="atlas card" id="atlas">
         <div class="atlas__map">
           <span class="badge"><i class="dot dot--teal"></i>Community atlas · V17</span>
@@ -122,64 +172,54 @@
           <a class="link" id="atlas-see" href="#region-vice-city">See region <span aria-hidden="true">→</span></a>
         </div>
       </div>
-      <p class="credit map-credit">Community reconstruction, not an official map. YANIS V17 / GTA VI Mapping Community; <a href="https://map.gtadb.org/" target="_blank" rel="noopener">GTADB.org &amp; contributors</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Stitched, cropped &amp; re-encoded by Neonshore; pins approximate. <a href="assets/img/leonida-yanis-v17-full.webp" target="_blank" rel="noopener">Full map with original credits ↗</a><br>Based on Rockstar trailers &amp; screenshots: © Rockstar Games, used for fan commentary</p>
+      <p class="credit map-credit">Community reconstruction, not an official map. YANIS V17 / GTA VI Mapping Community; <a href="https://map.gtadb.org/" target="_blank" rel="noopener">GTADB.org &amp; contributors</a> · <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY 4.0</a>. Stitched, cropped &amp; re-encoded by Neonshore; pins approximate. <a href="assets/img/leonida-yanis-v17-full.webp" target="_blank" rel="noopener">Full map with original credits ↗</a> · <a href="https://github.com/rolux/gtadb.org/tree/5c1d69ff864623d181da5457afaacd00b623e1a4/maps/tiles/6/yanis,17/2" target="_blank" rel="noopener">Map tiles source (gtadb.org) ↗</a><br>Based on Rockstar trailers &amp; screenshots: © Rockstar Games, used for fan commentary</p>
 
-      <section class="count card" id="countdown-card" aria-labelledby="count-title">
-        <div class="count__head"><h2 id="count-title">GTA VI launches in</h2><span class="count__date" id="count-date">19 Nov 2026 · 00:00 ET</span></div>
-        <p class="count__out" id="count-out" hidden>Out now. Unlocked at 00:00 ET on 19 Nov 2026 in the US.</p>
-        <div class="count__grid" id="countdown" role="timer" aria-live="off">
-          <div><b data-u="d">00</b><span>days</span></div>
-          <div><b data-u="h">00</b><span>hours</span></div>
-          <div><b data-u="m">00</b><span>mins</span></div>
-          <div><b data-u="s">00</b><span>secs</span></div>
-        </div>
-        <p class="count__note">US launch in your time: <b id="count-local">—</b></p>
-        <p class="count__fine">Counting to 00:00 ET on 19 Nov 2026, the US release (Rockstar: midnight local time). Other regions unlock at their own midnight.</p>
-      </section>
+      </div>
     </div>
   </section>
 
   <!-- REGIONS -->
   <section class="sec wrap" id="regions" aria-labelledby="regions-title">
-    <div class="sec__head"><h2 id="regions-title">One state, six moods.</h2><a class="link" href="#atlas">Open the atlas <span aria-hidden="true">→</span></a></div>
-    <ul class="regions">
-      <li class="rcard card" id="region-vice-city"><figure class="official-figure region-photo"><img src="assets/img/vice-city.webp" alt="Vice City sign, palms and a plane at sunset" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+    <div class="sec__head" data-x3-reveal><div><p class="x3-kick"><b class="x3-count" data-to="6">6</b> regions</p><h2 id="regions-title">One state, six moods.</h2></div><a class="link" href="#atlas">Open the atlas <span aria-hidden="true">→</span></a></div>
+    <ul class="regions" data-x3-stagger>
+      <li class="rcard card" id="region-vice-city"><figure class="official-figure region-photo"><img src="assets/art/vice-city.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--pink"></i>City</span><h3>Vice City</h3><p>Pastel towers, packed beaches and a nightlife that never clocks out.</p><button type="button" class="arrow" data-r="0" aria-label="Show Vice City on the atlas" title="Show on the atlas">↗</button></div></li>
-      <li class="rcard card" id="region-grassrivers"><figure class="official-figure region-photo"><img src="assets/img/grassrivers.webp" alt="Airboats crossing the Grassrivers wetlands" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="rcard card" id="region-grassrivers"><figure class="official-figure region-photo"><img src="assets/art/grassrivers.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--teal"></i>Wetlands</span><h3>Grassrivers</h3><p>Airboats, sawgrass and things that move under the water.</p><button type="button" class="arrow" data-r="1" aria-label="Show Grassrivers on the atlas" title="Show on the atlas">↗</button></div></li>
-      <li class="rcard card" id="region-leonida-keys"><figure class="official-figure region-photo"><img src="assets/img/leonida-keys.webp" alt="Seaplane above the Leonida Keys" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="rcard card" id="region-leonida-keys"><figure class="official-figure region-photo"><img src="assets/art/leonida-keys.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--blue"></i>Islands</span><h3>Leonida Keys</h3><p>A string of bridges, bait shops and sunsets at the end of the road.</p><button type="button" class="arrow" data-r="2" aria-label="Show Leonida Keys on the atlas" title="Show on the atlas">↗</button></div></li>
-      <li class="rcard card" id="region-port-gellhorn"><figure class="official-figure region-photo"><img src="assets/img/port-gellhorn.webp" alt="Faded motel sign at night in Port Gellhorn" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="rcard card" id="region-port-gellhorn"><figure class="official-figure region-photo"><img src="assets/art/port-gellhorn.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--orange"></i>Port city</span><h3>Port Gellhorn</h3><p>Faded motels and a boardwalk that has seen better summers.</p><button type="button" class="arrow" data-r="3" aria-label="Show Port Gellhorn on the atlas" title="Show on the atlas">↗</button></div></li>
-      <li class="rcard card" id="region-ambrosia"><figure class="official-figure region-photo"><img src="assets/img/ambrosia.webp" alt="Motorcycle riders on an Ambrosia road" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="rcard card" id="region-ambrosia"><figure class="official-figure region-photo"><img src="assets/art/ambrosia.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--violet"></i>Industrial town</span><h3>Ambrosia</h3><p>Smokestacks, long highways and a small town that works for a living.</p><button type="button" class="arrow" data-r="4" aria-label="Show Ambrosia on the atlas" title="Show on the atlas">↗</button></div></li>
-      <li class="rcard card" id="region-kalaga"><figure class="official-figure region-photo"><img src="assets/img/kalaga.webp" alt="Rocky river valley in Mount Kalaga National Park" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="rcard card" id="region-kalaga"><figure class="official-figure region-photo"><img src="assets/art/kalaga.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="rcard__body"><span class="tagd"><i class="dot dot--green"></i>National park</span><h3>Kalaga National Park</h3><p>Trails, lookout points and plenty of places to go off grid.</p><button type="button" class="arrow" data-r="5" aria-label="Show Kalaga National Park on the atlas" title="Show on the atlas">↗</button></div></li>
     </ul>
-    <p class="fine">Region names are as announced by Rockstar Games. Region screenshots were downloaded from the official GTA VI media library; card descriptions are original fan commentary.</p>
+    <p class="fine">Region names are as announced by Rockstar Games. Region artwork is original Neonshore illustration, not game footage; card descriptions are original fan commentary.</p>
   </section>
 
   <!-- FILES -->
   <section class="sec wrap" id="files" aria-labelledby="files-title">
-    <div class="sec__head"><h2 id="files-title">Go to the source</h2><p class="sec__aside">Official Rockstar pages, opened in a new tab.</p></div>
-    <ul class="files">
-      <li><a class="fcard card fcard--a" href="https://www.rockstargames.com/VI/only-in-leonida" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/img/characters.webp" alt="Jason and Lucia" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure><span class="fcard__t">People &amp; places <i class="fi fi--person" aria-hidden="true"></i></span><span class="fcard__s">Only in Leonida, on rockstargames.com <span aria-hidden="true">↗</span></span></a></li>
-      <li><a class="fcard card fcard--b" href="https://www.rockstargames.com/VI/launch-gallery" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/img/vehicles.webp" alt="Jason and Lucia with a green classic car by the water" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure><span class="fcard__t">Launch gallery <i class="fi fi--car" aria-hidden="true"></i></span><span class="fcard__s">New screenshots, on rockstargames.com <span aria-hidden="true">↗</span></span></a></li>
-      <li><a class="fcard card fcard--c" href="https://www.rockstargames.com/VI/music" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/img/activities.webp" alt="People outside a waterfront shop" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure><span class="fcard__t">Music <i class="fi fi--pad" aria-hidden="true"></i></span><span class="fcard__s">Official soundtrack page <span aria-hidden="true">↗</span></span></a></li>
-      <li><a class="fcard card fcard--d" href="https://www.rockstargames.com/VI/media/screenshots" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/img/gallery.webp" alt="Vice City towers, homes and a basketball court by the water" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure><span class="fcard__t">Screenshots <i class="fi fi--img" aria-hidden="true"></i></span><span class="fcard__s">The full official media library <span aria-hidden="true">↗</span></span></a></li>
+    <div class="sec__head" data-x3-reveal><div><p class="x3-kick"><b class="x3-count" data-to="4">4</b> official pages</p><h2 id="files-title">Go to the source</h2></div><p class="sec__aside">Official Rockstar pages, opened in a new tab.</p></div>
+    <ul class="files" data-x3-stagger>
+      <li><a class="fcard card fcard--a" href="https://www.rockstargames.com/VI/only-in-leonida" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/art/people.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure><span class="fcard__t">People &amp; places <i class="fi fi--person" aria-hidden="true"></i></span><span class="fcard__s">Only in Leonida, on rockstargames.com <span aria-hidden="true">↗</span></span></a></li>
+      <li><a class="fcard card fcard--b" href="https://www.rockstargames.com/VI/launch-gallery" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/art/car.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure><span class="fcard__t">Launch gallery <i class="fi fi--car" aria-hidden="true"></i></span><span class="fcard__s">New screenshots, on rockstargames.com <span aria-hidden="true">↗</span></span></a></li>
+      <li><a class="fcard card fcard--c" href="https://www.rockstargames.com/VI/music" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/art/music.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure><span class="fcard__t">Music <i class="fi fi--pad" aria-hidden="true"></i></span><span class="fcard__s">Official soundtrack page <span aria-hidden="true">↗</span></span></a></li>
+      <li><a class="fcard card fcard--d" href="https://www.rockstargames.com/VI/media/screenshots" target="_blank" rel="noopener"><figure class="official-figure folder-photo"><img src="assets/art/screen.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure><span class="fcard__t">Screenshots <i class="fi fi--img" aria-hidden="true"></i></span><span class="fcard__s">The full official media library <span aria-hidden="true">↗</span></span></a></li>
     </ul>
   </section>
 
   <!-- RECORD -->
   <section class="sec wrap record" id="record" aria-labelledby="record-title">
-    <div class="record__left">
+    <div class="record__left" data-x3-reveal>
       <p class="eyebrow">News with receipts</p>
+      <p class="x3-kick"><b class="x3-count" data-to="3">3</b> sourced stories</p>
       <h2 id="record-title">Confirmed, not rumoured</h2>
       <p class="muted">Each update links to where it came from. Leaks and speculation stay out of this feed.</p>
       <a class="link" href="https://www.rockstargames.com/newswire" target="_blank" rel="noopener">All news on Rockstar Newswire <span aria-hidden="true">↗</span></a>
-      <figure class="official-figure record__feature card"><img src="assets/img/featured.webp" alt="Official artwork of Jason and Lucia on a sunny street" loading="lazy" width="1400" height="788"><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <figure class="official-figure record__feature card"><img src="assets/art/news.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><figcaption>Original illustration by Neonshore</figcaption></figure>
     </div>
-    <ol class="timeline">
+    <ol class="timeline" data-x3-stagger>
       <li><time datetime="2026-11-10">10 Nov 2026</time><h3>Pre-load Grand Theft Auto VI now</h3><p class="muted tl__txt">Pre-loading opened for everyone who pre-ordered digitally; code-in-box owners can pre-load once their code arrives.</p><a class="src" href="https://www.rockstargames.com/newswire/article/89834o94713o21" target="_blank" rel="noopener">Source: Rockstar Newswire <span aria-hidden="true">↗</span></a></li>
       <li><time datetime="2026-11-05">5 Nov 2026</time><h3>Explore the Grand Theft Auto VI launch gallery</h3><p class="muted tl__txt">Two weeks out, Rockstar published a new set of screenshots of Vice City and beyond on the official site.</p><a class="src" href="https://www.rockstargames.com/newswire/article/39ak81277255o9" target="_blank" rel="noopener">Source: Rockstar Newswire <span aria-hidden="true">↗</span></a></li>
       <li><time datetime="2026-11-03">3 Nov 2026</time><h3>Grand Theft Auto VI pre-load begins on November 10</h3><p class="muted tl__txt">Rockstar set the pre-load date for PlayStation 5 and Xbox Series X|S ahead of the 19 November launch.</p><a class="src" href="https://www.rockstargames.com/newswire/article/k4ak9okk485712" target="_blank" rel="noopener">Source: Rockstar Newswire <span aria-hidden="true">↗</span></a></li>
@@ -189,45 +229,46 @@
   <!-- MEDIA (store-style 2x2 cards) -->
   <section class="sec wrap" id="media" aria-labelledby="media-title">
     <p class="eyebrow">Look closer</p>
-    <div class="sec__head"><h2 id="media-title">Official trailers</h2><a class="link" href="https://www.rockstargames.com/VI/media/videos" target="_blank" rel="noopener">All official videos <span aria-hidden="true">↗</span></a></div>
-    <ul class="media">
-      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="rz1B4B2yBZY" data-title="Grand Theft Auto VI Launch Trailer" aria-label="Play Grand Theft Auto VI Launch Trailer (loads YouTube)"><img src="assets/img/launch-trailer-frame.webp" alt="Jason and Lucia beside a car, official launch trailer at 00:40" loading="lazy" width="1400" height="788"><span class="play" aria-hidden="true">▶</span></button><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+    <div class="sec__head" data-x3-reveal><div><p class="x3-kick"><b class="x3-count" data-to="4">4</b> official videos</p><h2 id="media-title">Official trailers</h2></div><a class="link" href="https://www.rockstargames.com/VI/media/videos" target="_blank" rel="noopener">All official videos <span aria-hidden="true">↗</span></a></div>
+    <ul class="media" data-x3-stagger>
+      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="rz1B4B2yBZY" data-title="Grand Theft Auto VI Launch Trailer" aria-label="Play Grand Theft Auto VI Launch Trailer (loads YouTube)"><img src="assets/art/car.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><span class="play" aria-hidden="true">▶</span></button><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="mcard__body"><p class="mcard__k">Rockstar Games</p><h3>Grand Theft Auto VI Launch Trailer</h3><p class="muted">The final trailer before release.</p><a class="link" href="https://www.youtube.com/watch?v=rz1B4B2yBZY" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></div></li>
-      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="VQRLujxTm3c" data-title="Grand Theft Auto VI Trailer 2" aria-label="Play Grand Theft Auto VI Trailer 2 (loads YouTube)"><img src="assets/img/underwater.webp" alt="Underwater reef scene in the Leonida Keys" loading="lazy" width="1400" height="788"><span class="play" aria-hidden="true">▶</span></button><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="VQRLujxTm3c" data-title="Grand Theft Auto VI Trailer 2" aria-label="Play Grand Theft Auto VI Trailer 2 (loads YouTube)"><img src="assets/art/reef.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><span class="play" aria-hidden="true">▶</span></button><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="mcard__body"><p class="mcard__k">Rockstar Games</p><h3>Grand Theft Auto VI Trailer 2</h3><p class="muted">The second official trailer, released by Rockstar Games.</p><a class="link" href="https://www.youtube.com/watch?v=VQRLujxTm3c" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></div></li>
-      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Video</span><button type="button" class="yt" data-yt="_yl5ELcmugI" data-title="Grand Theft Auto VI: Pre-Load Now" aria-label="Play Grand Theft Auto VI: Pre-Load Now (loads YouTube)"><img src="assets/img/hidden-sign.webp" alt="Roadside billboard and riders on a Leonida Keys street" loading="lazy" width="1400" height="788"><span class="play" aria-hidden="true">▶</span></button><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Video</span><button type="button" class="yt" data-yt="_yl5ELcmugI" data-title="Grand Theft Auto VI: Pre-Load Now" aria-label="Play Grand Theft Auto VI: Pre-Load Now (loads YouTube)"><img src="assets/art/billboard.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><span class="play" aria-hidden="true">▶</span></button><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="mcard__body"><p class="mcard__k">Rockstar Games</p><h3>Grand Theft Auto VI: Pre-Load Now</h3><p class="muted">Rockstar’s video announcing that pre-loading is open.</p><a class="link" href="https://www.youtube.com/watch?v=_yl5ELcmugI" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></div></li>
-      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="QdBZY2fkU-0" data-title="Grand Theft Auto VI Trailer 1" aria-label="Play Grand Theft Auto VI Trailer 1 (loads YouTube)"><img src="assets/img/soundtrack.webp" alt="Vice City waterfront and Ferris wheel at night" loading="lazy" width="1400" height="788"><span class="play" aria-hidden="true">▶</span></button><figcaption>© Rockstar Games, used for fan commentary</figcaption></figure>
+      <li class="mcard card"><figure class="official-figure media-photo"><span class="pill">Trailer</span><button type="button" class="yt" data-yt="QdBZY2fkU-0" data-title="Grand Theft Auto VI Trailer 1" aria-label="Play Grand Theft Auto VI Trailer 1 (loads YouTube)"><img src="assets/art/ferris.svg" alt="" loading="lazy" data-x3-par="0.05" width="1600" height="900"><span class="play" aria-hidden="true">▶</span></button><figcaption>Original illustration by Neonshore</figcaption></figure>
         <div class="mcard__body"><p class="mcard__k">Rockstar Games</p><h3>Grand Theft Auto VI Trailer 1</h3><p class="muted">The reveal that started it all.</p><a class="link" href="https://www.youtube.com/watch?v=QdBZY2fkU-0" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></div></li>
     </ul>
-    <p class="fine">Videos play from YouTube’s privacy-enhanced domain (youtube-nocookie.com) only after you press play. Poster images are official Rockstar screenshots and a frame from the launch trailer.</p>
+    <p class="x3-note"><b>Official trailers, embedded from YouTube.</b> These videos are official Rockstar Games trailers. They load from YouTube’s privacy-enhanced domain (youtube-nocookie.com) only after you press play. The poster images are original Neonshore illustrations.</p>
   </section>
 
   <!-- COMMUNITY -->
   <section class="sec wrap" id="community" aria-labelledby="community-title">
-    <div class="join card">
+    <div class="join card" data-x3-reveal>
       <div class="join__l">
         <span class="badge"><span class="dots" aria-hidden="true">•••</span> Community</span>
         <p class="eyebrow eyebrow--muted">Built by players</p>
         <h2 id="community-title">A guide <span class="hl">without the sign-up</span></h2>
         <p class="muted">Neonshore has no accounts, no mailing list and no comments. Everything here is readable by anyone, and the map comes from an open community project.</p>
       </div>
-      <ul class="join__r comm-links">
+      <ul class="join__r comm-links" data-x3-stagger>
         <li><a class="comm-link" href="https://map.gtadb.org/" target="_blank" rel="noopener"><b>GTA VI Mapping Community map</b><span>The open, CC BY 4.0 reconstruction our atlas is based on (GTADB.org) ↗</span></a></li>
         <li><a class="comm-link" href="https://www.rockstargames.com/newswire" target="_blank" rel="noopener"><b>Rockstar Newswire</b><span>Official announcements, straight from the source ↗</span></a></li>
-        <li><a class="comm-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener"><b>Official GTA VI site</b><span>Trailers, screenshots and pre-order details ↗</span></a></li>
+        <li><a class="comm-link" href="https://www.rockstargames.com/VI" target="_blank" rel="noopener"><b>Official game site</b><span>Trailers, screenshots and pre-order details ↗</span></a></li>
       </ul>
     </div>
   </section>
 
   <!-- ABOUT / SOURCES / PRIVACY -->
   <section class="sec wrap about" id="about" aria-labelledby="about-title">
-    <div class="about__grid">
-      <div class="card about__card"><h2 id="about-title">About</h2><p class="muted">Neonshore is an unofficial fan guide to GTA VI. It is not affiliated with Rockstar Games or Take-Two Interactive. The logo and editorial text are original; facts link to their official source.</p></div>
-      <div class="card about__card" id="sources"><h2>Sources &amp; credits</h2><p class="muted">GTA VI imagery © Rockstar Games, from the official media library, used for fan commentary. Community map: YANIS V17 / GTA VI Mapping Community, GTADB.org &amp; contributors, CC BY 4.0.</p><a class="link" href="sources.html">Full source list <span aria-hidden="true">→</span></a></div>
+    <div class="about__grid" data-x3-stagger>
+      <div class="card about__card"><h2 id="about-title">About</h2><p class="muted">Neonshore is an unofficial fan guide to Rockstar’s next game, set in Leonida. It is not affiliated with Rockstar Games or Take-Two Interactive. The logo and editorial text are original; facts link to their official source.</p></div>
+      <div class="card about__card" id="sources"><h2>Sources &amp; credits</h2><p class="muted">All illustrations and the 3D scene are original Neonshore work. Community map: YANIS V17 / GTA VI Mapping Community, GTADB.org &amp; contributors, CC BY 4.0.</p><a class="link" href="sources.html">Full source list <span aria-hidden="true">→</span></a></div>
       <div class="card about__card" id="privacy"><h2>Privacy</h2><p class="muted">This site collects nothing: no accounts, forms, cookies or analytics. Fonts load from Google Fonts. Trailers load from youtube-nocookie.com only when you press play.</p></div>
     </div>
   </section>
+  </div><!-- /x3-solid -->
 </main>
 
 <footer class="ftr">
@@ -236,9 +277,10 @@
   </div>
   <div class="wrap ftr__bot">
     <nav aria-label="Footer"><a href="#regions">Regions</a><a href="#atlas">Atlas</a><a href="#record">News</a><a href="#media">Trailers</a><a href="#about">About</a><a href="sources.html">Sources</a><a href="#privacy">Privacy</a><a href="shop/index.html">Shop</a></nav>
-    <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and related marks are trademarks of their respective owners. GTA VI imagery © Rockstar Games, used for fan commentary. The community map is credited separately. Neonshore’s logo and editorial text are original.</p>
+    <p class="disclaimer"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and related marks are trademarks of their respective owners. The 3D scene and illustrations are original; the community map is credited where it is shown. Neonshore’s logo and editorial text are original.</p>
   </div>
 </footer>
 <script src="main.js" defer></script>
+<script type="module" src="assets/js/scrollfx.js"></script>
 </body>
 </html>
