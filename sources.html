@@ -4,7 +4,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css">
 <style>.doc{max-width:860px;margin:0 auto;padding:40px 20px 80px;line-height:1.6;overflow-wrap:anywhere}.doc h1{font-size:2rem;margin:20px 0 14px}.doc h2{font-size:1.3rem;margin:34px 0 10px;color:var(--pink)}.doc h3{font-size:1.05rem;margin:22px 0 8px}.doc p,.doc li{color:#d7cde6;font-size:.92rem}.doc ul,.doc ol{padding-left:22px;margin:8px 0}.doc a{color:#ff8cc6}.doc code{background:#22182f;padding:1px 5px;border-radius:5px;font-size:.82rem}.doc table{border-collapse:collapse;width:100%;font-size:.82rem}.doc td,.doc th{border:1px solid #3a2c52;padding:6px}.back{display:inline-block;margin-bottom:10px}</style>
-</head><body><main class="doc" id="main"><a class="link back" href="index.html">← Back to Neonshore</a>
+</head><body>
+<header class="hdr" id="top"><div class="hdr__in">
+<a class="brand" href="index.html" aria-label="Neonshore home"><img src="assets/logo.svg" alt="" width="32" height="32"><span class="brand__name">NEON<b>SHORE</b></span></a>
+<ul class="nav__sections" aria-label="Site sections"><li><a href="index.html">Community</a></li><li><a href="shop/index.html">Shop</a></li></ul>
+</div></header>
+<main class="doc" id="main"><a class="link back" href="index.html">← Back to Neonshore</a>
 <h1>Image sources: Neonshore</h1>
 <p>Checked 17 Nov 2026 (Europe/London). Everything is stored locally under <code>assets/img/</code>. Nothing is hotlinked.</p>
 <h2>Official Rockstar Games material</h2>
@@ -124,7 +129,7 @@
 <tbody>
 <tr>
 <td><code>assets/img/leonida-yanis-v17.webp</code> (shown in the hero atlas)</td>
-<td>Tiles: <a href="https://github.com/rolux/gtadb.org/tree/main/maps/tiles/6/yanis,17/2" target="_blank" rel="noopener">https://github.com/rolux/gtadb.org/tree/main/maps/tiles/6/yanis,17/2</a> (raw files at <code>https://raw.githubusercontent.com/rolux/gtadb.org/main/maps/tiles/6/yanis,17/2/2,{row},{col}.jpg</code>, row 2–12, col 2–12; 121 tiles). Fetched from GitHub on 17 Nov 2026, repo HEAD <code>5c1d69ff864623d181da5457afaacd00b623e1a4</code>. Nothing was hotlinked from gtadb.org.</td>
+<td>Tiles (pinned to the commit I fetched): <a href="https://github.com/rolux/gtadb.org/tree/5c1d69ff864623d181da5457afaacd00b623e1a4/maps/tiles/6/yanis,17/2" target="_blank" rel="noopener">https://github.com/rolux/gtadb.org/tree/5c1d69ff864623d181da5457afaacd00b623e1a4/maps/tiles/6/yanis,17/2</a> (raw files at <code>https://raw.githubusercontent.com/rolux/gtadb.org/5c1d69ff864623d181da5457afaacd00b623e1a4/maps/tiles/6/yanis,17/2/2,{row},{col}.jpg</code>, row 2–12, col 2–12; 121 tiles). Fetched from GitHub on 17 Nov 2026, repo HEAD <code>5c1d69ff864623d181da5457afaacd00b623e1a4</code>. Nothing was hotlinked from gtadb.org. The <code>yanis,17</code> folder has since been replaced by <code>yanis,18</code> on the repo’s <code>main</code> branch (checked 18 Nov 2026), so the old <code>tree/main/...</code> link returned 404; the commit-pinned link above returns 200.</td>
 <td>I stitched the 121 level-2 tiles into a 2816×2816 image, cropped it to the landmass (x 460–1900, y 240–2560) to drop the legend and credits sheet, resized it to 1200×1933 and encoded it as WebP q92.</td>
 </tr>
 <tr>
@@ -170,4 +175,6 @@
 <li>Official pages linked: /VI, /VI/only-in-leonida, /VI/launch-gallery, /VI/music, /VI/media/screenshots, /VI/media/videos and /newswire, all on rockstargames.com. All returned HTTP 200 on 17 Nov 2026.</li>
 </ul>
 <p class="disclaimer" style="margin-top:40px"><b>Unofficial fan site.</b> Neonshore is not affiliated with, endorsed or sponsored by Rockstar Games or Take-Two Interactive. Grand Theft Auto, GTA and related marks are trademarks of their respective owners. GTA VI imagery © Rockstar Games, used for fan commentary.</p>
-<a class="link back" href="index.html">← Back to Neonshore</a></main></body></html>
+<a class="link back" href="index.html">← Back to Neonshore</a></main>
+<footer class="ftr"><div class="wrap ftr__bot"><nav aria-label="Footer"><a href="index.html">Community</a><a href="shop/index.html">Shop</a><a href="index.html#about">About</a><a href="index.html#privacy">Privacy</a></nav></div></footer>
+</body></html>
