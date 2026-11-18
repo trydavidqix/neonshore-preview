@@ -8,14 +8,12 @@ permissions:
   pages: write
   id-token: write
 concurrency:
-  group: pages
+  group: pages-v2
   cancel-in-progress: true
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 15
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -32,23 +30,30 @@ jobs:
           test -f _site/assets/img/featured.webp
           test -f _site/.nojekyll
       - name: Enable Pages if needed
+        timeout-minutes: 2
         continue-on-error: true
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
+          set +e
           gh api --method POST /repos/${{ github.repository }}/pages \
             -H "Accept: application/vnd.github+json" \
-            -f build_type=workflow || true
+            -f build_type=workflow
+          echo "POST workflow exit=$?"
+          gh api --method POST /repos/${{ github.repository }}/pages \
+            -H "Accept: application/vnd.github+json" \
+            -f "source[branch]=main" \
+            -f "source[path]=/"
+          echo "POST branch source exit=$?"
+          gh api /repos/${{ github.repository }}/pages || true
       - name: Configure Pages
         uses: actions/configure-pages@v5
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Deploy
-        id: deployment
-        uses: actions/deploy-pages@v4
       - name: Commit decoded binaries to the repo
+        continue-on-error: true
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
@@ -61,3 +66,14 @@ jobs:
           fi
           git commit -m "Add decoded binary assets [skip ci]"
           git push
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy
+        id: deployment
+        uses: actions/deploy-pages@v4
